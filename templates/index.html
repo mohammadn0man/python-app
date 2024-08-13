@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Counter</title>
+    <script>
+        async function updateCounter() {
+            try {
+                const response = await fetch('/counter');
+                const data = await response.json();
+                document.getElementById('counter').innerText = data.counter;
+            } catch (error) {
+                console.error('Error fetching counter:', error);
+            }
+        }
+
+        window.onload = function() {
+            setInterval(updateCounter, 1000); // Update counter every 1 second
+        };
+    </script>
+</head>
+<body>
+    <h1>Infinite Counter</h1>
+    <div id="counter">0</div>
+</body>
+</html>
+
